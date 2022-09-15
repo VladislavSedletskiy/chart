@@ -1,0 +1,34 @@
+<form [formGroup]="form" (ngSubmit)="submit()" >
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Chart name"
+    formControlName="name"
+  >
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Chart type"
+    formControlName="type"
+  >
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="CHart color"
+    formControlName="color"
+  >
+
+  <button
+    type="submit"
+    class="py-2 px-4 bg-blue-600 text-white"
+  >Create</button>
+
+<!--  <ul class="w50" *ngIf="arr.length > 0">-->
+<!--    <li *ngFor="let item of arr">-->
+<!--      <p>name:{{ item.name }}</p>-->
+<!--      <p>type:{{ item.type }}</p>-->
+<!--      <p>color:{{ item.color }}</p>-->
+<!--      <button (click)="remove(item.name)">remove</button>-->
+<!--    </li>-->
+<!--  </ul>-->
+</form>

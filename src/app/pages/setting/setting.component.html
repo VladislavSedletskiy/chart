@@ -1,0 +1,50 @@
+<ul>
+  <li *ngFor=" let chart of charts">{{chart.title}}</li>
+</ul>
+<!--<app-modal  *ngIf="modalService.isVisible$ | async">-->
+<!--  <app-add-chart></app-add-chart>-->
+<!--</app-modal>-->
+
+////
+
+<form [formGroup]="form" (ngSubmit)="submit()" >
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Chart name"
+    formControlName="name"
+  >
+  <input
+    type="type"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Chart type"
+    formControlName="type"
+  >
+  <input
+    type="color"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="CHart color"
+    formControlName="color"
+  >
+
+  <button
+    type="submit"
+    class="py-2 px-4 bg-blue-600 text-white"
+  >Create</button>
+
+</form>
+
+<ul class="w50" *ngIf="arr.length">
+  <li *ngFor="let item of charts">
+    <p>name:{{ item.name }}</p>
+    <p>type:{{ item.type }}</p>
+    <p>color:{{ item.color }}</p>
+    <button (click)="remove(item.id)">remove</button>
+  </li>
+</ul>
+
+////
+<button *ngIf = "!(modalService.isVisible$ | async)"
+  class="rounded bg-blue-700 text-white fixed right-5 bottom-5 py-2 px-4"
+  (click)="modalService.open()"
+>Add chart</button>
