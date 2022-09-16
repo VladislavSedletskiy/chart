@@ -26,6 +26,10 @@ export class ChartComponent implements OnInit {
   name1= "Value";
   chartOptions: Highcharts.Options = {
 
+    title:
+      { text: ''}
+    ,
+
     rangeSelector: {
       selected: 2
     },
@@ -34,10 +38,9 @@ export class ChartComponent implements OnInit {
   };
 
   ngOnInit(): void {
-
+    this.chartOptions.title = { text: this.chart.name },
     this.chartOptions.series = [
       {
-            name: this.chart.title,
              type: this.chart.type,
            data: this.chart.data,
         color: this.chart.color

@@ -16,6 +16,14 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
 import {ChartQuery} from "./State/chart.query";
+import { ModalUpdateComponent } from './pages/modal-update/modal-update.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelect, MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDividerModule} from "@angular/material/divider";
+
 
 @NgModule({
   declarations: [
@@ -26,6 +34,7 @@ import {ChartQuery} from "./State/chart.query";
     ChartComponent,
     ModalComponent,
     AddChartComponent,
+    ModalUpdateComponent,
   ],
     imports: [
         BrowserModule,
@@ -35,6 +44,12 @@ import {ChartQuery} from "./State/chart.query";
       ReactiveFormsModule,
       environment.production ? [] : AkitaNgDevtools.forRoot(),
       AkitaNgRouterStoreModule,
+      BrowserAnimationsModule,
+      MatInputModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatButtonModule,
+      MatDividerModule,
     ],
   providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }}],
   bootstrap: [AppComponent]

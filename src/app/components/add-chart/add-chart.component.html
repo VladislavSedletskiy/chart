@@ -1,34 +1,33 @@
-<form [formGroup]="form" (ngSubmit)="submit()" >
+<form [formGroup]="form" (ngSubmit)="submit()">
+<mat-form-field class="example-full-width border w-full py-1 px-2 mb-2" appearance="fill" floatLabel="always"  >
+  <mat-label>Name</mat-label>
+  <input matInput formControlName="name" type="text" placeholder="Enter name">
+<!--  <mat-placeholder class="placeholder">Search</mat-placeholder>-->
+</mat-form-field>
+
+  <mat-form-field class="example-full-width border w-full py-2 px-4 mb-2" >
+    <label>Chart's type</label>
+    <mat-select  formControlName="type" class="not-empty-select">
+    <mat-label>Type</mat-label>
+    <mat-option value="line" >line</mat-option>
+    <mat-option value="area">area</mat-option>
+    <mat-option value="column">column</mat-option>
+      <mat-option value="bar">bar</mat-option>
+      <mat-option value="pie">pie</mat-option>
+  </mat-select>
+  </mat-form-field>
   <input
-    type="text"
-    class="border w-full py-2 px-4 mb-2"
-    placeholder="Chart name"
-    formControlName="name"
-  >
-  <input
-    type="text"
-    class="border w-full py-2 px-4 mb-2"
-    placeholder="Chart type"
-    formControlName="type"
-  >
-  <input
-    type="text"
-    class="border w-full py-2 px-4 mb-2"
-    placeholder="CHart color"
+    type="color"
+    class="border  w-full py-2 px-4 mb-2"
+    placeholder="Color"
     formControlName="color"
   >
 
-  <button
-    type="submit"
-    class="py-2 px-4 bg-blue-600 text-white"
+  <button mat-raised-button
+          type="submit" class="bg-blue-300"
+
   >Create</button>
 
-<!--  <ul class="w50" *ngIf="arr.length > 0">-->
-<!--    <li *ngFor="let item of arr">-->
-<!--      <p>name:{{ item.name }}</p>-->
-<!--      <p>type:{{ item.type }}</p>-->
-<!--      <p>color:{{ item.color }}</p>-->
-<!--      <button (click)="remove(item.name)">remove</button>-->
-<!--    </li>-->
-<!--  </ul>-->
 </form>
+
+

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import { ChartQuery } from 'src/app/State/chart.query';
 import { ChartService } from 'src/app/State/chart.service';
 import {Chart} from "../../State/chart.model";
+import {ModalService} from "../../serviceModal/modal.service";
+import {guid} from "@datorama/akita";
+import {getRandomData} from "../../data/data";
 
 
 @Component({
@@ -10,8 +13,10 @@ import {Chart} from "../../State/chart.model";
   templateUrl: './add-chart.component.html',
   styleUrls: ['./add-chart.component.scss']
 })
+@Injectable({
+  providedIn: 'root',
+})
 export class AddChartComponent implements OnInit {
-
   arr: Chart[] = [];
 
   form = new FormGroup({
@@ -20,38 +25,42 @@ export class AddChartComponent implements OnInit {
     color: new FormControl<any>('', [Validators.required])
   })
 
-  constructor() {
+  charts : any;
+  constructor(
+    public modalService: ModalService,
+    public chartQuery: ChartQuery,
+    public chartService: ChartService
+  ) {
+
   }
-  // constructor( public chartQuery: ChartQuery,
-  //             public chartService: ChartService) {
-  // }
 
   ngOnInit(): void {
-   // this.chartService.addItemsToStore();
 
-    // this.chartQuery.items$.subscribe((x: Chart[]) => {
-    //   this.arr = x;
-    // });
+    this.chartQuery.items$.subscribe((x:any) => {
+      this.arr = x
+    });
+
+    this.chartQuery.items$.subscribe((x:any) => {
+      this.charts = x
+    });
   }
-   submit() {
-  //
-  //   const form = this.form.value;
-  //   const data: Chart = {
-  //     name: form.name,
-  //     type: form.type,
-  //     color: form.color,
-  //
-  //   };
-  //
-  //   this.chartService.add(data);
-  //
-  //  // this.form.get('name')?.setValue('');
-  //  // this.form.get('type')?.setValue('');
-  // //  this.form.get('color')?.setValue('');
-  //
-  //   console.log(this.form.value)
-  // }
-  // remove(name) {
-  //   this.chartService.delete(name);
+  submit() {
+
+    const form = this.form.value;
+    const data: Chart = {
+      id: guid(),
+      name: form.name,
+      type: form.type,
+      data: getRandomData(new Date('2020-01-01'), new Date('2021-02-01')),
+      color: form.color,
+
+    };
+
+    this.chartService.add(data);
+
+    this.form.get('name')?.setValue('');
+    this.form.get('type')?.setValue('');
+    this.form.get('color')?.setValue('');
+
   }
 }
